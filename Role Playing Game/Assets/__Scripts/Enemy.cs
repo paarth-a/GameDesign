@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
+    public static GameObject player;
+
     [Header("Set in Inspector")]
     public float speed = 10f;
     public float health = 10f;
@@ -23,15 +25,31 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void LateStart()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
+    { 
+        if((player.transform.position - transform.position).magnitude < 3f)
+        {
+            Attack();
+        }
+    }
+
+    public abstract void Attack();
+
+    public void TakeDamage(float damageAmount)
     {
-        
+        Debug.Log(damageAmount);
+        if (damageAmount - defence > 0f)
+        {
+            health -= damageAmount - defence;
+        }
+        if (health <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

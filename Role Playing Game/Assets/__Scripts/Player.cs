@@ -76,8 +76,8 @@ public abstract class Player : MonoBehaviour
     {
         nextDash = Time.time + dashCooldown;
         Vector3 pos = transform.position;
-        pos.x += 5f * xAxis;
-        pos.y += 5f * yAxis;
+        pos.x += 3f * xAxis;
+        pos.y += 3f * yAxis;
         transform.position = pos;
     }
 
@@ -87,5 +87,17 @@ public abstract class Player : MonoBehaviour
     {
         Debug.Log(coll);
         Debug.Log("A");
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        if(damageAmount - defence > 0f)
+        {
+            health -= damageAmount - defence;
+        }
+        if(health <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

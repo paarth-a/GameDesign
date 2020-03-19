@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Archer : Player
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject projectile;
+    public float projectileSpeed = 25;
 
     public override void Attack()
     {
-        Debug.Log("FIREBALL");
+        Vector3 shootDirection = Input.mousePosition;
+        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
+        shootDirection = shootDirection - transform.position;
+        Vector3 direction = shootDirection.normalized;
+        GameObject bulletInstance = Instantiate(projectile, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        Rigidbody2D rigidBody = bulletInstance.GetComponent<Rigidbody2D>();
+        rigidBody.velocity = new Vector2(direction.x * projectileSpeed, direction.y * projectileSpeed);
     }
 }

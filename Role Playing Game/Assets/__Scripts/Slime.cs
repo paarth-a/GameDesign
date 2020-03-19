@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    public static GameObject player;
 
-    void Start()
+    public override void Attack()
     {
-        Debug.Log("A");
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    void Update()
-    {
-        
+        Vector3 position = player.transform.position;
+        Debug.Log("Attack");
     }
 }

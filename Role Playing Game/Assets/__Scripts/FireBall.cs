@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class FireBall : Enemy
 {
-
-    void Start()
+    public override void Attack()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        Vector3 position = player.transform.position;
     }
 }
