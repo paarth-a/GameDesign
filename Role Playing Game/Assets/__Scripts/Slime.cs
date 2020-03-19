@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-
     public override void Attack()
     {
-        Vector3 position = player.transform.position;
-        Debug.Log("Attack");
+        float step = 1f * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, Player.S.transform.position, step);
     }
 }

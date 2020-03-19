@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class Player : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public abstract class Player : MonoBehaviour
     public float attack = 10f;
     public float ranged = 10f;
     public float dashCooldown = 2f;
+    public float maxEnergy = 100f;
+    public float energyCost = 10f;
+    public float energyRegen = 10f;
 
+    private float currentEnergy;
     private float nextDash = 0f;
 
     public Vector3 pos
@@ -39,21 +44,22 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        currentEnergy = maxEnergy;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && currentEnergy > energyCost)
         {
             Attack();
+            currentEnergy -= energyCost;
         }
+
+        RegainEnergy();
     }
 
     void Move()
@@ -74,20 +80,29 @@ public abstract class Player : MonoBehaviour
 
     void Dash(float xAxis, float yAxis)
     {
-        nextDash = Time.time + dashCooldown;
         Vector3 pos = transform.position;
         pos.x += 3f * xAxis;
         pos.y += 3f * yAxis;
-        transform.position = pos;
+        if(Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(xAxis, yAxis), 3f).collider == null)
+        {
+            transform.position = pos;
+            nextDash = Time.time + dashCooldown;
+        }
+    }
+
+    public void RegainEnergy()
+    {
+        if(currentEnergy >= maxEnergy)
+        {
+            currentEnergy = maxEnergy;
+        }
+        else
+        {
+            currentEnergy += energyRegen * Time.deltaTime;
+        }
     }
 
     public abstract void Attack();
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        Debug.Log(coll);
-        Debug.Log("A");
-    }
 
     public void TakeDamage(float damageAmount)
     {
@@ -95,9 +110,19 @@ public abstract class Player : MonoBehaviour
         {
             health -= damageAmount - defence;
         }
+        else
+        {
+            health -= 1f;
+        }
         if(health <= 0f)
         {
-            Destroy(gameObject);
+            Invoke("Reset", 3f);
         }
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene("Menu");
+        Destroy(gameObject);
     }
 }

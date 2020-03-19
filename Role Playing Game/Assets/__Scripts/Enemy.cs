@@ -4,14 +4,12 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public static GameObject player;
-
     [Header("Set in Inspector")]
-    public float speed = 10f;
+    public static float speed = 10f;
     public float health = 10f;
-    public float defence = 10f;
-    public float attack = 10f;
-    public float ranged = 10f;
+    public static float defence = 5f;
+    public static float attack = 10f;
+    public static float ranged = 10f;
 
     public Vector3 pos
     {
@@ -25,14 +23,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    void LateStart()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
     void LateUpdate()
     { 
-        if((player.transform.position - transform.position).magnitude < 3f)
+        if(Player.S != null && (Player.S.transform.position - transform.position).magnitude < 3f)
         {
             Attack();
         }
@@ -40,12 +33,24 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract void Attack();
 
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            coll.gameObject.GetComponent<Player>().TakeDamage(attack);
+            Destroy(gameObject);
+        }
+    }
+
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log(damageAmount);
         if (damageAmount - defence > 0f)
         {
             health -= damageAmount - defence;
+        }
+        else
+        {
+            health -= 1f;
         }
         if (health <= 0f)
         {

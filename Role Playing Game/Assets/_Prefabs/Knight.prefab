@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6421512310275864801}
   - component: {fileID: 3506873262286277042}
   - component: {fileID: 9146496400466294248}
-  m_Layer: 0
+  - component: {fileID: -9153470609333400105}
+  m_Layer: 8
   m_Name: Knight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -51,6 +52,12 @@ MonoBehaviour:
   attack: 10
   ranged: 5
   dashCooldown: 3
+  maxEnergy: 100
+  energyCost: 10
+  energyRegen: 10
+  projectile: {fileID: 6018855717574931957, guid: dc4238461a319b5459f917cc0f70cada,
+    type: 3}
+  projectileSpeed: 5
 --- !u!212 &3506873262286277042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,5 +131,26 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1.4}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
+--- !u!50 &-9153470609333400105
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748920375330990326}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

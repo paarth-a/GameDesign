@@ -13,7 +13,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if(coll.gameObject.tag == "Enemy")
         {
-            //call the take damage method of the enemy
+            coll.gameObject.GetComponent<Enemy>().TakeDamage(Player.S.attack);
             Destroy(gameObject);
         }
     }

@@ -15,5 +15,6 @@ public class Level1 : MonoBehaviour
         vcam.m_Follow = player.transform;
 
         Instantiate(slime);
+        Instantiate(fireball);
     }
 }

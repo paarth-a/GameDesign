@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8499099699457401474}
   - component: {fileID: 57687444762494041}
   - component: {fileID: 7002596733899333910}
-  - component: {fileID: 712257309619090251}
-  m_Layer: 9
+  - component: {fileID: 8851815728431960877}
+  m_Layer: 11
   m_Name: Fire bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -130,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &712257309619090251
+--- !u!114 &8851815728431960877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,6 +139,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2571718826461467813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b373ad5ed2951ce46a624e75f9346472, type: 3}
+  m_Script: {fileID: 11500000, guid: 2638b3b0850d1dc4bbe2b2c3c2fd586f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
