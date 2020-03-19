@@ -9,6 +9,7 @@ public class FireBall : Enemy
     public float attackDelay = 2f;
     private float nextAttack = 0f;
 
+    //Enemy fire shot attack
     public override void Attack()
     {
         if(Time.time > nextAttack)

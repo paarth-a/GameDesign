@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Manages the player projectiles
 public class PlayerProjectile : MonoBehaviour
 {
     void Start()

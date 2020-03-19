@@ -5,11 +5,12 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [Header("Set in Inspector")]
-    public static float speed = 10f;
+    public float speed = 10f;
     public float health = 10f;
-    public static float defence = 5f;
+    public float defence = 5f;
     public static float attack = 10f;
-    public static float ranged = 10f;
+    public float ranged = 10f;
+    
 
     public Vector3 pos
     {

@@ -46,15 +46,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5318738cf163d9b49b6a20565362af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   health: 12
   defence: 15
   attack: 10
   ranged: 5
   dashCooldown: 3
-  maxEnergy: 100
+  maxEnergy: 120
   energyCost: 10
   energyRegen: 10
+  slime: {fileID: 2493618116201450510, guid: 512abeec265ef144da09d6a591c8e969, type: 3}
+  fireball: {fileID: 3581010279521091922, guid: 986a05f0618495c4dabb2b774ae3e580,
+    type: 3}
   projectile: {fileID: 6018855717574931957, guid: dc4238461a319b5459f917cc0f70cada,
     type: 3}
   projectileSpeed: 5

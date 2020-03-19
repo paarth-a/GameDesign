@@ -9,6 +9,7 @@ public class Level1 : MonoBehaviour
     public GameObject slime;
     public GameObject fireball;
 
+    //Starts the first level
     void Start()
     {
         GameObject player = Instantiate(playerTypes[Menu.playerChoice - 1]);
@@ -17,4 +18,5 @@ public class Level1 : MonoBehaviour
         Instantiate(slime);
         Instantiate(fireball);
     }
+
 }

@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
         }
     }
 
+    //allows for character customization
     public void SelectArcher()
     {
         playerChoice = 1;

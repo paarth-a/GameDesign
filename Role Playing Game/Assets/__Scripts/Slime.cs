@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
+    //manages slime physical attack
     public override void Attack()
     {
         float step = 1f * Time.deltaTime;

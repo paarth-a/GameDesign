@@ -140,7 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f4f2558f850084cba80af982a1382e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   health: 10
+  defence: 5
+  ranged: 10
   projectile: {fileID: 2571718826461467813, guid: 1ecab801cd71a6645915e67a1be29a8c,
     type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 6
+  attackDelay: 2

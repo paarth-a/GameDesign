@@ -9,6 +9,7 @@ public class EnemyProjectile : MonoBehaviour
         Destroy(gameObject, 1.5f);
     }
 
+    //Manages enemy damage
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Player")

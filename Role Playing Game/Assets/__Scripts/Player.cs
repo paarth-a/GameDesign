@@ -20,6 +20,11 @@ public abstract class Player : MonoBehaviour
     private float currentEnergy;
     private float nextDash = 0f;
 
+    public GameObject slime;
+    public GameObject fireball;
+
+    public float mindamage = 1f;
+
     public Vector3 pos
     {
         get
@@ -47,6 +52,7 @@ public abstract class Player : MonoBehaviour
     void Start()
     {
         currentEnergy = maxEnergy;
+        InvokeRepeating("SpawnEnemy", 4f, 1f);
     }
 
     void FixedUpdate()
@@ -58,10 +64,16 @@ public abstract class Player : MonoBehaviour
             Attack();
             currentEnergy -= energyCost;
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Attacking();
+            currentEnergy -= energyCost;
+        }
 
         RegainEnergy();
     }
 
+    //Manages movement and dash (teleport)
     void Move()
     {
         float xAxis = Input.GetAxis("Horizontal");
@@ -78,18 +90,20 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    //Makes sure teleportation doesn't end it a wall
     void Dash(float xAxis, float yAxis)
     {
         Vector3 pos = transform.position;
         pos.x += 3f * xAxis;
         pos.y += 3f * yAxis;
-        if(Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(xAxis, yAxis), 3f).collider == null)
+        if (!Physics2D.OverlapPoint(pos))
         {
             transform.position = pos;
             nextDash = Time.time + dashCooldown;
         }
     }
 
+    //Replenishes energy
     public void RegainEnergy()
     {
         if(currentEnergy >= maxEnergy)
@@ -104,9 +118,10 @@ public abstract class Player : MonoBehaviour
 
     public abstract void Attack();
 
+    //Adds damage to the player
     public void TakeDamage(float damageAmount)
     {
-        if(damageAmount - defence > 0f)
+        if(damageAmount - defence > mindamage)
         {
             health -= damageAmount - defence;
         }
@@ -125,4 +140,54 @@ public abstract class Player : MonoBehaviour
         SceneManager.LoadScene("Menu");
         Destroy(gameObject);
     }
+
+    //generates enemies around the player
+    public void SpawnEnemy()
+    {
+        GameObject enemy = slime;
+        float rand = Random.Range(0f, 1f);
+        if (rand <= 0.5f)
+        {
+            enemy = slime;
+        }
+        if (rand > 0.5f)
+        {
+            enemy = fireball;
+        }
+        
+        Vector3 pos = transform.position;
+        float randx = Random.Range(0f, 1f);
+        float multiplierx = 0f;
+        if(randx <= 0.5f)
+        {
+            multiplierx = -1f;
+        }
+        if(randx > 0.5f)
+        {
+            multiplierx = 1f;
+        }
+        float randy = Random.Range(0f, 1f);
+        float multipliery = 0f;
+        if (randy <= 0.5f)
+        {
+            multipliery = -1f;
+        }
+        if (randy > 0.5f)
+        {
+            multipliery = 1f;
+        }
+        float newX = pos.x + (4f * multiplierx);
+        float newY = pos.y + (4f * multipliery);
+        float newZ = pos.z;
+        Vector3 enemypos = transform.position;
+        enemypos.Set(newX, newY, newZ);
+        if (!Physics2D.OverlapPoint(enemypos))
+        {
+            Instantiate(enemy, enemypos, Quaternion.identity);
+        }
+        
+    }
+
+    public abstract void Attacking();
+
 }
