@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8092025058621914584}
   - component: {fileID: 7946770377885282466}
-  - component: {fileID: 8722139761233486000}
+  - component: {fileID: -4161190146159477679}
+  - component: {fileID: 61724382327202841}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Player
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8722139761233486000
+--- !u!114 &-4161190146159477679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,9 +95,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  health: 7
-  defence: 5
-  attack: 12
-  ranged: 12
+  health: 10
+  defence: 10
+  attack: 10
+  ranged: 10
   dashCooldown: 2
   projectile: {fileID: 0}
+--- !u!61 &61724382327202841
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008123366983750891}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.3, y: 3.1}
+    newSize: {x: 2.3, y: 3.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2}
+  m_EdgeRadius: 0

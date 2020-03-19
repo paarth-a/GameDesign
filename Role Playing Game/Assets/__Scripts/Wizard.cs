@@ -6,13 +6,11 @@ public class Wizard : Player
 {
     public GameObject projectile;
 
-    void Start()
-    {
-        
-    }
-
     public override void Attack()
     {
-        
+        Vector3 shootDirection = Input.mousePosition;
+        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
+        shootDirection = shootDirection - transform.position;
+        //instantiate and give it a velocity in this direction
     }
 }

@@ -82,4 +82,10 @@ public abstract class Player : MonoBehaviour
     }
 
     public abstract void Attack();
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        Debug.Log(coll);
+        Debug.Log("A");
+    }
 }
