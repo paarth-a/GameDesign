@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
     static public Player S;
 
@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public float attack = 10f;
     public float ranged = 10f;
     public float dashCooldown = 2f;
-    public PlayerType playerType { set; get; }
 
     private float nextDash = 0f;
 
@@ -43,13 +42,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        S.playerType = Menu.playerType;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
     }
 
     void Move()
@@ -72,13 +76,10 @@ public class Player : MonoBehaviour
     {
         nextDash = Time.time + dashCooldown;
         Vector3 pos = transform.position;
-        pos.x += 20f * xAxis;
-        pos.y += 20f * yAxis;
+        pos.x += 5f * xAxis;
+        pos.y += 5f * yAxis;
         transform.position = pos;
     }
 
-    public enum PlayerType
-    {
-        ARCHER, KNIGHT, WIZARD
-    }
+    public abstract void Attack();
 }

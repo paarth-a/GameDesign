@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Wizard : Player
 {
-    // Start is called before the first frame update
+    public GameObject projectile;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Attack()
     {
         
     }

@@ -15,4 +15,9 @@ public class Knight : Player
     {
         
     }
+
+    public override void Attack()
+    {
+
+    }
 }

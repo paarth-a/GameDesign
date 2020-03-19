@@ -15,4 +15,9 @@ public class Archer : Player
     {
         
     }
+
+    public override void Attack()
+    {
+        Debug.Log("FIREBALL");
+    }
 }

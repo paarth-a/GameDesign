@@ -5,13 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public static Player.PlayerType playerType;
-
-    private bool hasSelectedType = false;
+    public static int playerChoice = 0;
 
     public void PlayGame()
     {
-        if (hasSelectedType)
+        if (playerChoice != 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -19,19 +17,16 @@ public class Menu : MonoBehaviour
 
     public void SelectArcher()
     {
-        playerType = Player.PlayerType.ARCHER;
-        hasSelectedType = true;
+        playerChoice = 1;
     }
 
     public void SelectKnight()
     {
-        playerType = Player.PlayerType.KNIGHT;
-        hasSelectedType = true;
+        playerChoice = 2;
     }
 
     public void SelectWizard()
     {
-        playerType = Player.PlayerType.WIZARD;
-        hasSelectedType = true;
+        playerChoice = 3;
     }
 }
