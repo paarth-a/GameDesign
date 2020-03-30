@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Level1 : MonoBehaviour
 {
@@ -8,13 +9,15 @@ public class Level1 : MonoBehaviour
 
     public GameObject slime;
     public GameObject fireball;
+    
+
 
     //Starts the first level
     void Start()
     {
         GameObject player = Instantiate(playerTypes[Menu.playerChoice - 1]);
         vcam.m_Follow = player.transform;
-
+        
         Instantiate(slime);
         Instantiate(fireball);
     }
