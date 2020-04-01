@@ -29,6 +29,8 @@ public abstract class Player : MonoBehaviour
     public float mindamage = 1f;
 
     public float maxhealth;
+    public float coins;
+    public Text coinDisplay;
 
     public Vector3 pos
     {
@@ -62,6 +64,21 @@ public abstract class Player : MonoBehaviour
     {
         currentEnergy = maxEnergy;
         InvokeRepeating("SpawnEnemy", 4f, 1f);
+    }
+
+    void OnTrigger(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            other.gameObject.Destroy;
+            coins += 1;
+            SetCoins();
+        }
+    }
+
+    public void SetCoins()
+    {
+        coinDisplay.text = "Coins: " + coins.ToString();
     }
 
     void FixedUpdate()
