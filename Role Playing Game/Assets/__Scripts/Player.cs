@@ -31,6 +31,7 @@ public abstract class Player : MonoBehaviour
     public float maxhealth;
     public float coins;
     public Text coinDisplay;
+    public Level level;
 
     public Vector3 pos
     {
@@ -49,6 +50,7 @@ public abstract class Player : MonoBehaviour
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
         energyBar = GameObject.FindGameObjectWithTag("EnergyBar").GetComponent<Slider>();
         maxhealth = health;
+        level = new Level();
 
         if (S == null)
         {
@@ -70,7 +72,7 @@ public abstract class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Coin"))
         {
-            other.gameObject.Destroy;
+            Destroy(other.gameObject);
             coins += 1;
             SetCoins();
         }

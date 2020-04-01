@@ -16,6 +16,7 @@ public class PlayerProjectile : MonoBehaviour
         if(coll.gameObject.tag == "Enemy")
         {
             coll.gameObject.GetComponent<Enemy>().TakeDamage(Player.S.attack);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().level.IncreaseExperience(coll.gameObject.GetComponent<Enemy>().experience);
             Destroy(gameObject);
         }
     }

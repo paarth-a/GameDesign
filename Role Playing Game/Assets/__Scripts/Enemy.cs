@@ -10,7 +10,8 @@ public abstract class Enemy : MonoBehaviour
     public float defence = 5f;
     public static float attack = 10f;
     public float ranged = 10f;
-    
+    public Level level = new Level();
+    public int experience;
 
     public Vector3 pos
     {
