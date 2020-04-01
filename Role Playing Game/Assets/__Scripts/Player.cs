@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public abstract class Player : MonoBehaviour
 {
@@ -22,8 +23,12 @@ public abstract class Player : MonoBehaviour
 
     public GameObject slime;
     public GameObject fireball;
+    public Slider healthBar;
+    public Slider energyBar;
 
     public float mindamage = 1f;
+
+    public float maxhealth;
 
     public Vector3 pos
     {
@@ -39,6 +44,10 @@ public abstract class Player : MonoBehaviour
 
     void Awake()
     {
+        healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
+        energyBar = GameObject.FindGameObjectWithTag("EnergyBar").GetComponent<Slider>();
+        maxhealth = health;
+
         if (S == null)
         {
             S = this;
@@ -71,6 +80,9 @@ public abstract class Player : MonoBehaviour
         }
 
         RegainEnergy();
+
+        healthBar.value = health / maxhealth;
+        energyBar.value = currentEnergy / maxEnergy;
     }
 
     //Manages movement and dash (teleport)
