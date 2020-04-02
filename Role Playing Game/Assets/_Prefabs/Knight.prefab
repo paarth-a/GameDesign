@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3506873262286277042}
   - component: {fileID: 9146496400466294248}
   - component: {fileID: -9153470609333400105}
+  - component: {fileID: 2131481134156968041}
   m_Layer: 8
   m_Name: Knight
   m_TagString: Player
@@ -55,9 +56,16 @@ MonoBehaviour:
   maxEnergy: 120
   energyCost: 10
   energyRegen: 10
+  energyDashCost: 10
   slime: {fileID: 2493618116201450510, guid: 512abeec265ef144da09d6a591c8e969, type: 3}
   fireball: {fileID: 3581010279521091922, guid: 986a05f0618495c4dabb2b774ae3e580,
     type: 3}
+  healthBar: {fileID: 0}
+  energyBar: {fileID: 0}
+  mindamage: 1
+  maxhealth: 0
+  coins: 0
+  coinDisplay: {fileID: 0}
   projectile: {fileID: 6018855717574931957, guid: dc4238461a319b5459f917cc0f70cada,
     type: 3}
   projectileSpeed: 5
@@ -157,3 +165,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &2131481134156968041
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748920375330990326}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26558b066fa66564e88d28399b7805d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
