@@ -83,6 +83,10 @@ public abstract class Player : MonoBehaviour
     {
         currentEnergy = maxEnergy;
         animator = GetComponent<Animator>();
+        SetLevel();
+        SetCoins();
+        SetHealth();
+        SetEnergy();
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -99,10 +103,12 @@ public abstract class Player : MonoBehaviour
             if(other.gameObject.GetComponent<Potion>().potionType == Potion.PotionType.HEALTH)
             {
                 healPotions++;
+                SetHealth();
             }
             else
             {
                 energyPotions++;
+                SetEnergy();
             }
         }
         else if(other.gameObject.tag == "Puzzle")
@@ -114,8 +120,10 @@ public abstract class Player : MonoBehaviour
         {
             DontDestroyOnLoad(this);
             Player.S.transform.position = new Vector3(0f, 0f, 0f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }else if(other.gameObject.tag == "Enemy" && isAttacking)
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Additive);
+        }
+        else if(other.gameObject.tag == "Enemy" && isAttacking)
         {
             Destroy(other.gameObject);
         }
@@ -139,6 +147,11 @@ public abstract class Player : MonoBehaviour
     public void SetEnergy()
     {
         energyPotionsDisplay.text = "Energy Potions: " + energyPotions.ToString();
+    }
+
+    public void SetLevel()
+    {
+        levelDisplay.text = "Level: " + level.level.ToString();
     }
 
     void FixedUpdate()
@@ -193,6 +206,8 @@ public abstract class Player : MonoBehaviour
         }
 
         SetAnimationState();
+
+        levelBar.value = (float)level.currentExperience / (float)1000;
     }
 
     private void setAttacking()

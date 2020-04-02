@@ -16,6 +16,9 @@ public class Level2 : MonoBehaviour
     void Start()
     {
         vcam.m_Follow = Player.S.transform;
+        Instantiate(puzzle, new Vector3(30f, -47f, 0f), Quaternion.identity);
+        Instantiate(puzzle, new Vector3(110f, -40f, 0f), Quaternion.identity);
+        Instantiate(portal, new Vector3(164f, -45f, 0f), Quaternion.identity);
         InvokeRepeating("SpawnEnemy", 0f, 1f);
     }
 

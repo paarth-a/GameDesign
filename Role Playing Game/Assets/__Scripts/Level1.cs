@@ -18,6 +18,8 @@ public class Level1 : MonoBehaviour
         GameObject player = Instantiate(playerTypes[Menu.playerChoice - 1]);
         vcam.m_Follow = player.transform;
         Instantiate(portal, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        Instantiate(puzzle, new Vector3(91f, -36f, 0f), Quaternion.identity);
+        Instantiate(puzzle, new Vector3(70f, 17f, 0f), Quaternion.identity);
         InvokeRepeating("SpawnEnemy", 0f, 1f);
     }
 
