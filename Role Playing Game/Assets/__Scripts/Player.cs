@@ -20,6 +20,8 @@ public abstract class Player : MonoBehaviour
 
     private float currentEnergy;
     private float nextDash = 0f;
+    private List<GameObject> healPotions = new List<GameObject>();
+    private List<GameObject> energyPotions = new List<GameObject>();
 
     public GameObject slime;
     public GameObject fireball;
@@ -75,6 +77,18 @@ public abstract class Player : MonoBehaviour
             Destroy(other.gameObject);
             coins += 1;
             SetCoins();
+        }
+        if (other.gameObject.CompareTag("Item"))
+        {
+            Destroy(other.gameObject);
+            if(other.gameObject.GetComponent<Potion>().potionType == Potion.PotionType.HEALTH)
+            {
+                healPotions.Add(other.gameObject);
+            }
+            else
+            {
+                energyPotions.Add(other.gameObject);
+            }
         }
     }
 
