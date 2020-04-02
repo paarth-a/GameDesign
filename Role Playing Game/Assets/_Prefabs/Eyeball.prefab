@@ -125,6 +125,13 @@ MonoBehaviour:
   defence: 5
   ranged: 10
   experience: 0
+  coin: {fileID: 3500804932127788144, guid: 825aabe863339ae4f848e80eff1eaf8e, type: 3}
+  coinDrops: 2
+  attackRadius: 3
+  healPotion: {fileID: 3955775910185369207, guid: cf08e2581f4b9584183a3e402fa312e9,
+    type: 3}
+  energyPotion: {fileID: 6697688788361538835, guid: b90c27626dce57b478e8d2b2fdc5786a,
+    type: 3}
   projectile: {fileID: 8503266339769806077, guid: 26bbfdd4b1a79704a908c218e0dc4d25,
     type: 3}
   projectileSpeed: 10

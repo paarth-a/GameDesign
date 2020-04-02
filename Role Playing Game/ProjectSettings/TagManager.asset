@@ -13,6 +13,11 @@ TagManager:
   - Walls
   - Portal
   - Puzzle
+  - PuzzleDisplay
+  - EnergyDisplay
+  - HealthDisplay
+  - LevelDisplay
+  - LevelBar
   layers:
   - Default
   - TransparentFX

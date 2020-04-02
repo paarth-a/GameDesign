@@ -8,10 +8,12 @@ public class Level
     public int statBoostPerLevel;
     public int currentExperience = 0;
     public int levelExperience = 1000;
+    public float[] baseValues;
 
-    public Level(int level = 1)
+    public Level(int level = 1, params float[] baseValues)
     {
         this.level = level;
+        this.baseValues = baseValues;
     }
 
     public void IncreaseExperience(int experience)
@@ -25,5 +27,10 @@ public class Level
         {
             currentExperience += experience;
         }
+
+        Player.S.speed = (level - 1) * statBoostPerLevel + baseValues[0];
+        Player.S.health = (level - 1) * statBoostPerLevel + baseValues[1];
+        Player.S.defence = (level - 1) * statBoostPerLevel + baseValues[2];
+        Player.S.attack = (level - 1) * statBoostPerLevel + baseValues[3];
     }
 }

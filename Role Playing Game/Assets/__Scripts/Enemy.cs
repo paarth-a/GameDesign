@@ -53,6 +53,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player")
         {
+            Destroy(gameObject);
             coll.gameObject.GetComponent<Player>().TakeDamage(attack);
         }
     }

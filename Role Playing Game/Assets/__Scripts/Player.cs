@@ -61,8 +61,13 @@ public abstract class Player : MonoBehaviour
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
         energyBar = GameObject.FindGameObjectWithTag("EnergyBar").GetComponent<Slider>();
         coinDisplay = GameObject.FindGameObjectWithTag("CoinDisplay").GetComponent<Text>();
+        puzzleDisplay = GameObject.FindGameObjectWithTag("PuzzleDisplay").GetComponent<Text>();
+        healPotionsDisplay = GameObject.FindGameObjectWithTag("HealthDisplay").GetComponent<Text>();
+        energyPotionsDisplay = GameObject.FindGameObjectWithTag("EnergyDisplay").GetComponent<Text>();
+        levelDisplay = GameObject.FindGameObjectWithTag("LevelDisplay").GetComponent<Text>();
+        levelBar = GameObject.FindGameObjectWithTag("LevelBar").GetComponent<Slider>();
         maxhealth = health;
-        level = new Level();
+        level = new Level(1, speed, health, defence, attack);
 
         if (S == null)
         {
@@ -108,10 +113,11 @@ public abstract class Player : MonoBehaviour
         }else if(other.gameObject.tag == "Portal")
         {
             DontDestroyOnLoad(Player.S);
+            Player.S.transform.position = new Vector3(0f, 0f, 0f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }else if(other.gameObject.tag == "Enemy" && isAttacking)
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(Player.S.attack);
+            Destroy(other.gameObject);
         }
     }
 
@@ -123,6 +129,16 @@ public abstract class Player : MonoBehaviour
     public void SetPuzzle()
     {
         puzzleDisplay.text = "Puzzle Pieces: " + puzzlePieces.ToString();
+    }
+
+    public void SetHealth()
+    {
+        healPotionsDisplay.text = "Health Potions: " + healPotions.ToString();
+    }
+
+    public void SetEnergy()
+    {
+        energyPotionsDisplay.text = "Energy Potions: " + energyPotions.ToString();
     }
 
     void FixedUpdate()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6082029923324065670}
   - component: {fileID: 1501209007885387966}
   - component: {fileID: 8091461334003941380}
+  - component: {fileID: 1271025226495545479}
   m_Layer: 0
   m_Name: Saw blade
   m_TagString: Untagged
@@ -80,6 +81,8 @@ MonoBehaviour:
   coin: {fileID: 0}
   coinDrops: 2
   attackRadius: 3
+  healPotion: {fileID: 0}
+  energyPotion: {fileID: 0}
 --- !u!95 &1501209007885387966
 Animator:
   serializedVersion: 3
@@ -148,3 +151,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1271025226495545479
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778134952048014486}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

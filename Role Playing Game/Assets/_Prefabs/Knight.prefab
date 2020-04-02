@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5318738cf163d9b49b6a20565362af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  health: 120
-  defence: 150
+  speed: 4
+  health: 12
+  defence: 5
   attack: 10
   ranged: 5
   dashCooldown: 3

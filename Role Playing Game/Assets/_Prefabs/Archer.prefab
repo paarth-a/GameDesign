@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   health: 9
-  defence: 8
+  defence: 4
   attack: 9
   ranged: 10
   dashCooldown: 1
