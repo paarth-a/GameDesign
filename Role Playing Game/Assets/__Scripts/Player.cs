@@ -102,6 +102,14 @@ public abstract class Player : MonoBehaviour
     {
         Move();
 
+        RegainEnergy();
+
+        healthBar.value = health / maxhealth;
+        energyBar.value = currentEnergy / maxEnergy;
+    }
+
+    void Update()
+    {
         if (Input.GetMouseButtonDown(0) && currentEnergy > energyCost)
         {
             Attack();
@@ -112,11 +120,6 @@ public abstract class Player : MonoBehaviour
             Attacking();
             currentEnergy -= energyCost;
         }
-
-        RegainEnergy();
-
-        healthBar.value = health / maxhealth;
-        energyBar.value = currentEnergy / maxEnergy;
     }
 
     //Manages movement and dash (teleport)
@@ -185,53 +188,6 @@ public abstract class Player : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
         Destroy(gameObject);
-    }
-
-    //generates enemies around the player
-    public void SpawnEnemy()
-    {
-        GameObject enemy = slime;
-        float rand = Random.Range(0f, 1f);
-        if (rand <= 0.5f)
-        {
-            enemy = slime;
-        }
-        if (rand > 0.5f)
-        {
-            enemy = fireball;
-        }
-        
-        Vector3 pos = transform.position;
-        float randx = Random.Range(0f, 1f);
-        float multiplierx = 0f;
-        if(randx <= 0.5f)
-        {
-            multiplierx = -1f;
-        }
-        if(randx > 0.5f)
-        {
-            multiplierx = 1f;
-        }
-        float randy = Random.Range(0f, 1f);
-        float multipliery = 0f;
-        if (randy <= 0.5f)
-        {
-            multipliery = -1f;
-        }
-        if (randy > 0.5f)
-        {
-            multipliery = 1f;
-        }
-        float newX = pos.x + (4f * multiplierx);
-        float newY = pos.y + (4f * multipliery);
-        float newZ = pos.z;
-        Vector3 enemypos = transform.position;
-        enemypos.Set(newX, newY, newZ);
-        if (!Physics2D.OverlapPoint(enemypos))
-        {
-            Instantiate(enemy, enemypos, Quaternion.identity);
-        }
-        
     }
 
     public abstract void Attacking();

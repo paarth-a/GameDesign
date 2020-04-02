@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - CoinDisplay
   - Item
+  - Walls
   layers:
   - Default
   - TransparentFX

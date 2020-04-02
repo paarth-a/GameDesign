@@ -13,6 +13,7 @@ public class Wizard : Player
         Vector3 shootDirection = Input.mousePosition;
         shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
         shootDirection = shootDirection - transform.position;
+        shootDirection.z = 0;
         shootDirection = Vector3.Normalize(shootDirection);
         GameObject bulletInstance = Instantiate(projectile, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
         Rigidbody2D rigidBody = bulletInstance.GetComponent<Rigidbody2D>();

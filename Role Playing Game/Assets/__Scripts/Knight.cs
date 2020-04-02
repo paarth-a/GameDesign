@@ -13,6 +13,7 @@ public class Knight : Player
         Vector3 shootDirection = Input.mousePosition;
         shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
         shootDirection = shootDirection - transform.position;
+        shootDirection.z = 0;
         Vector3 direction = shootDirection.normalized;
         GameObject bulletInstance = Instantiate(projectile, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
         Rigidbody2D rigidBody = bulletInstance.GetComponent<Rigidbody2D>();

@@ -13,8 +13,9 @@ public class Archer : Player
         Vector3 shootDirection = Input.mousePosition;
         shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
         shootDirection = shootDirection - transform.position;
+        shootDirection.z = 0;
         Vector3 direction = shootDirection.normalized;
-        GameObject bulletInstance = Instantiate(projectile, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        GameObject bulletInstance = Instantiate(projectile, transform.position, Quaternion.Euler(direction));
         Rigidbody2D rigidBody = bulletInstance.GetComponent<Rigidbody2D>();
         rigidBody.velocity = new Vector2(direction.x * projectileSpeed, direction.y * projectileSpeed);
     }

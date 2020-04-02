@@ -55,12 +55,19 @@ MonoBehaviour:
   maxEnergy: 80
   energyCost: 10
   energyRegen: 10
+  energyDashCost: 10
   slime: {fileID: 2493618116201450510, guid: 512abeec265ef144da09d6a591c8e969, type: 3}
   fireball: {fileID: 3581010279521091922, guid: 986a05f0618495c4dabb2b774ae3e580,
     type: 3}
+  healthBar: {fileID: 0}
+  energyBar: {fileID: 0}
+  mindamage: 1
+  maxhealth: 0
+  coins: 0
+  coinDisplay: {fileID: 0}
   projectile: {fileID: 824323697872555505, guid: c8faa2acf85a1394e8aa19d2cca0dc3b,
     type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 2
 --- !u!212 &3365176999661323693
 SpriteRenderer:
   m_ObjectHideFlags: 0

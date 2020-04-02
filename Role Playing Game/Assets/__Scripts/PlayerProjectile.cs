@@ -6,17 +6,14 @@ using UnityEngine;
 //Manages the player projectiles
 public class PlayerProjectile : MonoBehaviour
 {
-    void Start()
-    {
-        Destroy(gameObject, 1.5f);
-    }
-
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.gameObject.tag == "Enemy")
+        if (coll.gameObject.tag == "Enemy")
         {
             coll.gameObject.GetComponent<Enemy>().TakeDamage(Player.S.attack);
             Destroy(gameObject);
         }
+        else if (coll.gameObject.tag == "Walls")
+            Destroy(gameObject);
     }
 }

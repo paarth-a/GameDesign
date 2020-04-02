@@ -13,7 +13,8 @@ public abstract class Enemy : MonoBehaviour
     public Level level = new Level();
     public int experience;
     public GameObject coin;
-    public int coinDrops;
+    public int coinDrops = 2;
+    public float attackRadius = 3f;
 
     public Vector3 pos
     {
@@ -29,9 +30,13 @@ public abstract class Enemy : MonoBehaviour
 
     void LateUpdate()
     { 
-        if(Player.S != null && (Player.S.transform.position - transform.position).magnitude < 3f)
+        if(Player.S != null && (Player.S.transform.position - transform.position).magnitude < attackRadius)
         {
             Attack();
+        }
+        if(Player.S != null && (Player.S.transform.position - transform.position).magnitude > 25f)
+        {
+            Destroy(gameObject);
         }
     }
 
