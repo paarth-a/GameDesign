@@ -120,8 +120,7 @@ public abstract class Player : MonoBehaviour
         {
             DontDestroyOnLoad(this);
             Player.S.transform.position = new Vector3(0f, 0f, 0f);
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Additive);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else if(other.gameObject.tag == "Enemy" && isAttacking)
         {
