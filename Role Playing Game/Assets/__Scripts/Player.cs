@@ -112,7 +112,7 @@ public abstract class Player : MonoBehaviour
             SetPuzzle();
         }else if(other.gameObject.tag == "Portal")
         {
-            DontDestroyOnLoad(Player.S);
+            DontDestroyOnLoad(this);
             Player.S.transform.position = new Vector3(0f, 0f, 0f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }else if(other.gameObject.tag == "Enemy" && isAttacking)
