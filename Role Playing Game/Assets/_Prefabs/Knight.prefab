@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5318738cf163d9b49b6a20565362af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  health: 12
-  defence: 15
+  speed: 10
+  health: 120
+  defence: 150
   attack: 10
   ranged: 5
   dashCooldown: 3
@@ -57,16 +57,19 @@ MonoBehaviour:
   energyCost: 10
   energyRegen: 10
   energyDashCost: 10
-  slime: {fileID: 2493618116201450510, guid: 512abeec265ef144da09d6a591c8e969, type: 3}
-  fireball: {fileID: 3581010279521091922, guid: 986a05f0618495c4dabb2b774ae3e580,
-    type: 3}
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
+  levelBar: {fileID: 0}
+  healPotionsDisplay: {fileID: 0}
+  energyPotionsDisplay: {fileID: 0}
+  puzzleDisplay: {fileID: 0}
+  levelDisplay: {fileID: 0}
   mindamage: 1
   maxhealth: 0
   coins: 0
+  puzzlePieces: 0
   coinDisplay: {fileID: 0}
-  projectile: {fileID: 6018855717574931957, guid: dc4238461a319b5459f917cc0f70cada,
+  projectile: {fileID: 3566000108417968620, guid: 3b3032d9a78099d429f79aa27b8dcc34,
     type: 3}
   projectileSpeed: 5
 --- !u!212 &3506873262286277042
@@ -104,8 +107,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 493148047
-  m_SortingLayer: 1
+  m_SortingLayerID: 1241149699
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 302f8a7dba08db746a086c4d93742df6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

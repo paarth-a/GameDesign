@@ -9,12 +9,15 @@ public class Level1 : MonoBehaviour
 
     public GameObject slime;
     public GameObject fireball;
+    public GameObject puzzle;
+    public GameObject portal;
 
     //Starts the first level
     void Start()
     {
         GameObject player = Instantiate(playerTypes[Menu.playerChoice - 1]);
         vcam.m_Follow = player.transform;
+        Instantiate(portal, new Vector3(0f, 0f, 0f), Quaternion.identity);
         InvokeRepeating("SpawnEnemy", 0f, 1f);
     }
 
@@ -22,36 +25,31 @@ public class Level1 : MonoBehaviour
     {
         Vector3 enemyPosition;
         GameObject enemy = null;
-        do
+        float enemyType = Random.Range(0f, 2f);
+        if (enemyType < 1f)
         {
-            float enemyType = Random.Range(0f, 2f);
-            if (enemyType < 1f)
-            {
-                enemy = slime;
-            }
-            else if (enemyType >= 1f)
-            {
-                enemy = fireball;
-            }
-            float randomX = Random.Range(5f, 10f);
-            float randomY = Random.Range(5f, 10f);
-            float multiplierX = Random.Range(-1f, 1f);
-            float multiplierY = Random.Range(-1f, 1f);
-            if(multiplierX < 0f)
-            {
-                randomX *= -1;
-            }
-            if(multiplierY < 0f)
-            {
-                randomY *= -1;
-            }
-            enemyPosition = new Vector3(randomX, randomY, 0f);
-            enemyPosition += Player.S.transform.position;
-        } while (Physics2D.OverlapPoint(enemyPosition));
+            enemy = slime;
+        }
+        else if (enemyType >= 1f)
+        {
+            enemy = fireball;
+        }
+        float randomX = Random.Range(5f, 10f);
+        float randomY = Random.Range(5f, 10f);
+        float multiplierX = Random.Range(-1f, 1f);
+        float multiplierY = Random.Range(-1f, 1f);
+        if(multiplierX < 0f)
+        {
+            randomX *= -1;
+        }
+        if(multiplierY < 0f)
+        {
+            randomY *= -1;
+        }
+        enemyPosition = new Vector3(randomX, randomY, 0f);
+        enemyPosition += Player.S.transform.position;
 
-        GameObject[] enemies;
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if(enemies.Length < 10)
+        if (!Physics2D.OverlapPoint(enemyPosition))
         {
             Instantiate(enemy, enemyPosition, Quaternion.identity);
         }

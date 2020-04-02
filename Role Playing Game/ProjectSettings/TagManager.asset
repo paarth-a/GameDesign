@@ -11,6 +11,8 @@ TagManager:
   - CoinDisplay
   - Item
   - Walls
+  - Portal
+  - Puzzle
   layers:
   - Default
   - TransparentFX
@@ -50,4 +52,7 @@ TagManager:
     locked: 0
   - name: Top
     uniqueID: 493148047
+    locked: 0
+  - name: Even Higher
+    uniqueID: 1241149699
     locked: 0

@@ -147,6 +147,11 @@ MonoBehaviour:
   experience: 100
   coin: {fileID: 3500804932127788144, guid: 825aabe863339ae4f848e80eff1eaf8e, type: 3}
   coinDrops: 2
+  attackRadius: 3
+  healPotion: {fileID: 3955775910185369207, guid: cf08e2581f4b9584183a3e402fa312e9,
+    type: 3}
+  energyPotion: {fileID: 6697688788361538835, guid: b90c27626dce57b478e8d2b2fdc5786a,
+    type: 3}
   projectile: {fileID: 2571718826461467813, guid: 1ecab801cd71a6645915e67a1be29a8c,
     type: 3}
   projectileSpeed: 6

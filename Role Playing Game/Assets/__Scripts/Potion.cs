@@ -5,7 +5,7 @@ using UnityEngine;
 public class Potion : MonoBehaviour
 {
     public PotionType potionType;
-    public float value = 5;
+    public static float value = 5;
 
     public enum PotionType
     {

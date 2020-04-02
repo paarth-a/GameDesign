@@ -20,18 +20,27 @@ public abstract class Player : MonoBehaviour
     public float energyDashCost = 10f;
 
     private float currentEnergy;
-    private List<GameObject> healPotions = new List<GameObject>();
-    private List<GameObject> energyPotions = new List<GameObject>();
+    private int healPotions = 0;
+    private int energyPotions = 0;
+    private Animator animator;
+    protected bool isWalking;
+    protected bool isShooting;
+    protected bool isAttacking;
+    protected bool isDead;
 
-    public GameObject slime;
-    public GameObject fireball;
     public Slider healthBar;
     public Slider energyBar;
+    public Slider levelBar;
+    public Text healPotionsDisplay;
+    public Text energyPotionsDisplay;
+    public Text puzzleDisplay;
+    public Text levelDisplay;
 
     public float mindamage = 1f;
 
     public float maxhealth;
     public float coins;
+    public int puzzlePieces;
     public Text coinDisplay;
     public Level level;
 
@@ -68,7 +77,7 @@ public abstract class Player : MonoBehaviour
     void Start()
     {
         currentEnergy = maxEnergy;
-        InvokeRepeating("SpawnEnemy", 4f, 1f);
+        animator = GetComponent<Animator>();
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -79,23 +88,41 @@ public abstract class Player : MonoBehaviour
             coins += 1;
             SetCoins();
         }
-        if (other.gameObject.tag == "Item")
+        else if (other.gameObject.tag == "Item")
         {
             Destroy(other.gameObject);
             if(other.gameObject.GetComponent<Potion>().potionType == Potion.PotionType.HEALTH)
             {
-                healPotions.Add(other.gameObject);
+                healPotions++;
             }
             else
             {
-                energyPotions.Add(other.gameObject);
+                energyPotions++;
             }
+        }
+        else if(other.gameObject.tag == "Puzzle")
+        {
+            Destroy(other.gameObject);
+            puzzlePieces++;
+            SetPuzzle();
+        }else if(other.gameObject.tag == "Portal")
+        {
+            DontDestroyOnLoad(Player.S);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }else if(other.gameObject.tag == "Enemy" && isAttacking)
+        {
+            other.gameObject.GetComponent<Enemy>().TakeDamage(Player.S.attack);
         }
     }
 
     public void SetCoins()
     {
         coinDisplay.text = "Coins: " + coins.ToString();
+    }
+
+    public void SetPuzzle()
+    {
+        puzzleDisplay.text = "Puzzle Pieces: " + puzzlePieces.ToString();
     }
 
     void FixedUpdate()
@@ -110,15 +137,91 @@ public abstract class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && currentEnergy > energyCost)
+        if (Input.GetMouseButtonDown(0) && currentEnergy > energyCost && !isAttacking)
         {
+            isShooting = true;
             Attack();
             currentEnergy -= energyCost;
+            Invoke("setShooting", 1f);
         }
-        if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1))
         {
+            isAttacking = true;
             Attacking();
             currentEnergy -= energyCost;
+            Invoke("setAttacking", 1f);
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && healPotions > 0)
+        {
+            healPotions--;
+            if (health + Potion.value < maxhealth)
+            {
+                health += Potion.value;
+            }
+            else
+            {
+                health = maxhealth;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.E) && energyPotions > 0)
+        {
+            energyPotions--;
+            if (health + Potion.value < maxhealth)
+            {
+                currentEnergy += Potion.value;
+            }
+            else
+            {
+                currentEnergy = maxEnergy;
+            }
+        }
+
+        SetAnimationState();
+    }
+
+    private void setAttacking()
+    {
+        isAttacking = false;
+    }
+
+    private void setShooting()
+    {
+        isShooting = false;
+    }
+
+    private void SetAnimationState()
+    {
+        if (isDead)
+        {
+            animator.SetBool("isDead", true);
+        }
+        else
+        {
+            animator.SetBool("isDead", false);
+        }
+        if (isShooting)
+        {
+            animator.SetBool("isShooting", true);
+        }
+        else
+        {
+            animator.SetBool("isShooting", false);
+        }
+        if (isAttacking)
+        {
+            animator.SetBool("isAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("isAttacking", false);
+        }
+        if (isWalking)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
         }
     }
 
@@ -127,6 +230,15 @@ public abstract class Player : MonoBehaviour
     {
         float xAxis = Input.GetAxis("Horizontal");
         float yAxis = Input.GetAxis("Vertical");
+
+        if(xAxis != 0 || yAxis != 0)
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
 
         Vector3 pos = transform.position;
         pos.x += xAxis * speed * Time.deltaTime;
@@ -176,10 +288,11 @@ public abstract class Player : MonoBehaviour
         }
         else
         {
-            health -= 1f;
+            health -= mindamage;
         }
         if(health <= 0f)
         {
+            isDead = true;
             Invoke("Reset", 3f);
         }
     }

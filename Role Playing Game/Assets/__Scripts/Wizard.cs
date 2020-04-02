@@ -23,23 +23,15 @@ public class Wizard : Player
     //Mele Attack
     public override void Attacking()
     {
- 
         float tempdefence = this.defence;
         this.defence = 1000;
         mindamage = 0f;
         float duration = 1.0f;
         float time = 0f;
-        Collision2D coll = new Collision2D();
-
-        do
+        while (time < duration)
         {
             time += Time.deltaTime;
-            if (coll.gameObject.tag == "Enemy")
-            {
-                coll.gameObject.GetComponent<Enemy>().TakeDamage(Player.S.attack);
-            }
-        } while (time < duration);
-        
+        }
 
         this.defence = tempdefence;
         mindamage = 1f;

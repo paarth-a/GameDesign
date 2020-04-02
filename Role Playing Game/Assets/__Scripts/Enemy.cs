@@ -15,6 +15,8 @@ public abstract class Enemy : MonoBehaviour
     public GameObject coin;
     public int coinDrops = 2;
     public float attackRadius = 3f;
+    public GameObject healPotion;
+    public GameObject energyPotion;
 
     public Vector3 pos
     {
@@ -34,20 +36,24 @@ public abstract class Enemy : MonoBehaviour
         {
             Attack();
         }
-        if(Player.S != null && (Player.S.transform.position - transform.position).magnitude > 25f)
+        else
         {
-            Destroy(gameObject);
+            Move();
         }
     }
 
     public abstract void Attack();
+
+    public virtual void Move()
+    {
+
+    }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Player")
         {
             coll.gameObject.GetComponent<Player>().TakeDamage(attack);
-            Destroy(gameObject);
         }
     }
 
@@ -65,6 +71,7 @@ public abstract class Enemy : MonoBehaviour
         {
             Player.S.level.IncreaseExperience(experience);
             InstantiateCoins();
+            InstantiatePotions();
             Destroy(gameObject);
         }
     }
@@ -78,6 +85,19 @@ public abstract class Enemy : MonoBehaviour
             Vector3 pos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
 
             Instantiate(coin, pos + transform.position, Quaternion.identity);
+        }
+    }
+
+    private void InstantiatePotions()
+    {
+        float random = Random.Range(0f, 2f);
+        if(random < 1f)
+        {
+            Instantiate(healPotion, transform.position, Quaternion.identity);
+        }
+        else if(random < 2f)
+        {
+            Instantiate(energyPotion, transform.position, Quaternion.identity);
         }
     }
 }
