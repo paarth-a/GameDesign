@@ -120,4 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1995717084fe204eb6e864c8a59e01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   health: 10
+  defence: 5
+  ranged: 10
+  experience: 0
+  coin: {fileID: 3500804932127788144, guid: 825aabe863339ae4f848e80eff1eaf8e, type: 3}
+  coinDrops: 5

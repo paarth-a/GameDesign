@@ -17,9 +17,9 @@ public abstract class Player : MonoBehaviour
     public float maxEnergy = 100f;
     public float energyCost = 10f;
     public float energyRegen = 10f;
+    public float energyDashCost = 10f;
 
     private float currentEnergy;
-    private float nextDash = 0f;
     private List<GameObject> healPotions = new List<GameObject>();
     private List<GameObject> energyPotions = new List<GameObject>();
 
@@ -51,6 +51,7 @@ public abstract class Player : MonoBehaviour
     {
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
         energyBar = GameObject.FindGameObjectWithTag("EnergyBar").GetComponent<Slider>();
+        coinDisplay = GameObject.FindGameObjectWithTag("CoinDisplay").GetComponent<Text>();
         maxhealth = health;
         level = new Level();
 
@@ -70,15 +71,15 @@ public abstract class Player : MonoBehaviour
         InvokeRepeating("SpawnEnemy", 4f, 1f);
     }
 
-    void OnTrigger(Collider other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.gameObject.tag == "Coin")
         {
             Destroy(other.gameObject);
             coins += 1;
             SetCoins();
         }
-        if (other.gameObject.CompareTag("Item"))
+        if (other.gameObject.tag == "Item")
         {
             Destroy(other.gameObject);
             if(other.gameObject.GetComponent<Potion>().potionType == Potion.PotionType.HEALTH)
@@ -129,7 +130,7 @@ public abstract class Player : MonoBehaviour
         pos.y += yAxis * speed * Time.deltaTime;
         transform.position = pos;
 
-        if (Input.GetKeyDown("space") && Time.time > nextDash)
+        if (Input.GetKeyDown("space") && currentEnergy >= energyDashCost)
         {
             Dash(xAxis, yAxis);
         }
@@ -144,7 +145,7 @@ public abstract class Player : MonoBehaviour
         if (!Physics2D.OverlapPoint(pos))
         {
             transform.position = pos;
-            nextDash = Time.time + dashCooldown;
+            currentEnergy -= energyDashCost;
         }
     }
 

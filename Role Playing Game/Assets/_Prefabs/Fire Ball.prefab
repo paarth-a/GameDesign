@@ -145,6 +145,8 @@ MonoBehaviour:
   defence: 5
   ranged: 10
   experience: 100
+  coin: {fileID: 3500804932127788144, guid: 825aabe863339ae4f848e80eff1eaf8e, type: 3}
+  coinDrops: 2
   projectile: {fileID: 2571718826461467813, guid: 1ecab801cd71a6645915e67a1be29a8c,
     type: 3}
   projectileSpeed: 6

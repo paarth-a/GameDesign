@@ -12,6 +12,8 @@ public abstract class Enemy : MonoBehaviour
     public float ranged = 10f;
     public Level level = new Level();
     public int experience;
+    public GameObject coin;
+    public int coinDrops;
 
     public Vector3 pos
     {
@@ -57,7 +59,20 @@ public abstract class Enemy : MonoBehaviour
         if (health <= 0f)
         {
             Player.S.level.IncreaseExperience(experience);
+            InstantiateCoins();
             Destroy(gameObject);
+        }
+    }
+
+    private void InstantiateCoins()
+    {
+        float radius = 0.5f;
+        for (int i = 0; i < coinDrops; i++)
+        {
+            float angle = i * Mathf.PI * 2 / coinDrops;
+            Vector3 pos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
+
+            Instantiate(coin, pos + transform.position, Quaternion.identity);
         }
     }
 }
