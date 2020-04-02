@@ -56,6 +56,7 @@ public abstract class Enemy : MonoBehaviour
         }
         if (health <= 0f)
         {
+            Player.S.level.IncreaseExperience(experience);
             Destroy(gameObject);
         }
     }
